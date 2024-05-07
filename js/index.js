@@ -169,65 +169,6 @@ function updateBreadcrumbs(newLocation) {
     breadcrumb.appendChild(li);
   });
 }
-function infoValidate(){
-    document.getElementById('registrationForm').addEventListener('submit', function(event) {
-        event.preventDefault(); 
-        var username = document.getElementById('username').value;
-        var email = document.getElementById('email').value;
-        var password = document.getElementById('password').value;
-        var phoneNum = document.getElementById('phoneNum').value;
-        var checkPassword = document.getElementById('checkpassword').value;
-        var usernameRegex = /^[a-zA-Z0-9_-]{3,15}$/;
-        var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-        var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-        var phoneNumRegex = /^[0-9]{10,}$/;
-        if (!usernameRegex.test(username)) {
-            document.getElementById("regExName").style="color: red";
-            document.getElementById("regExName").innerHTML='Tên đăng nhập không hợp lệ. Chỉ chấp nhận chữ cái, số, gạch dưới và gạch ngang, từ 3 đến 15 ký tự.';
-            return;
-        } else {
-            document.getElementById("regExName").innerHTML='<span class="material-symbols-outlined">done </span>';
-            document.getElementById('regExName').style="color:green";
-        }
-        if (!emailRegex.test(email)) {
-            document.getElementById("regExEmail").style="color: red";
-            document.getElementById("regExEmail").innerHTML='Email không hợp lệ. Vui lòng nhập đúng định dạng email.';
-            return;
-        } 
-        else {
-            document.getElementById("regExEmail").innerHTML='<span class="material-symbols-outlined">done </span>';
-            document.getElementById('regExEmail').style="color:green";
-        }
-        if (!phoneNumRegex.test(phoneNum)) {
-            document.getElementById("regExPhone").style="color: red";
-            document.getElementById("regExPhone").innerHTML='Số điện thoại không hợp lệ, phải là số và có ít nhất 10 số';
-            return;
-        }else {
-            document.getElementById("regExPhone").innerHTML='<span class="material-symbols-outlined">done </span>';
-            document.getElementById('regExPhone').style="color:green";
-        }
-        if (!passwordRegex.test(password)) {
-            document.getElementById("regExPassword").style="color: red";
-            document.getElementById("regExPassword").innerHTML='Mật khẩu không hợp lệ. Phải có ít nhất 8 ký tự, bao gồm chữ cái và số.';
-            return;
-        } 
-        else {
-            document.getElementById("regExPassword").innerHTML='<span class="material-symbols-outlined">done </span>';
-            document.getElementById('regExPassword').style="color:green";
-        }
-        if (password != checkPassword) {
-            document.getElementById("confirmPassword").style="color: red";
-            document.getElementById("confirmPassword").innerHTML='Mật khẩu không trùng khớp';
-            return;
-        }else {
-            document.getElementById("confirmPassword").innerHTML='<span class="material-symbols-outlined">done </span>';
-            document.getElementById('confirmPassword').style="color:green";
-        }
-        localStorage.setItem('userData', JSON.stringify({ username, email, password }));
-        alert('Thông tin đăng ký đã được lưu trữ.');
-    });
-}
-
 function closeAndReset() {
     document.getElementById('id02').style.display='none';
     document.getElementById('registrationForm').reset();
@@ -237,7 +178,63 @@ function closeAndReset() {
     document.getElementById("regExPassword").innerHTML='';
     document.getElementById("confirmPassword").innerHTML='';
 }
-
+document.getElementById('registrationForm').addEventListener('submit', function(event) {
+    event.preventDefault(); 
+    var username = document.getElementById('username').value;
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+    var phoneNum = document.getElementById('phoneNum').value;
+    var checkPassword = document.getElementById('checkpassword').value;
+    var usernameRegex = /^[a-zA-Z0-9_-]{3,15}$/;
+    var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    var phoneNumRegex = /^[0-9]{10,}$/;
+    if (!usernameRegex.test(username)) {
+        document.getElementById("regExName").style="color: red";
+        document.getElementById("regExName").innerHTML='Tên đăng nhập không hợp lệ. Chỉ chấp nhận chữ cái, số, gạch dưới và gạch ngang, từ 3 đến 15 ký tự.';
+        return;
+    } else {
+        document.getElementById("regExName").innerHTML='<span class="material-symbols-outlined">done </span>';
+        document.getElementById('regExName').style="color:green";
+    }
+    if (!emailRegex.test(email)) {
+        document.getElementById("regExEmail").style="color: red";
+        document.getElementById("regExEmail").innerHTML='Email không hợp lệ. Vui lòng nhập đúng định dạng email.';
+        return;
+    } 
+    else {
+        document.getElementById("regExEmail").innerHTML='<span class="material-symbols-outlined">done </span>';
+        document.getElementById('regExEmail').style="color:green";
+    }
+    if (!phoneNumRegex.test(phoneNum)) {
+        document.getElementById("regExPhone").style="color: red";
+        document.getElementById("regExPhone").innerHTML='Số điện thoại không hợp lệ, phải là số và có ít nhất 10 số';
+        return;
+    }else {
+        document.getElementById("regExPhone").innerHTML='<span class="material-symbols-outlined">done </span>';
+        document.getElementById('regExPhone').style="color:green";
+    }
+    if (!passwordRegex.test(password)) {
+        document.getElementById("regExPassword").style="color: red";
+        document.getElementById("regExPassword").innerHTML='Mật khẩu không hợp lệ. Phải có ít nhất 8 ký tự, bao gồm chữ cái và số.';
+        return;
+    } 
+    else {
+        document.getElementById("regExPassword").innerHTML='<span class="material-symbols-outlined">done </span>';
+        document.getElementById('regExPassword').style="color:green";
+    }
+    if (password != checkPassword) {
+        document.getElementById("confirmPassword").style="color: red";
+        document.getElementById("confirmPassword").innerHTML='Mật khẩu không trùng khớp';
+        return;
+    }else {
+        document.getElementById("confirmPassword").innerHTML='<span class="material-symbols-outlined">done </span>';
+        document.getElementById('confirmPassword').style="color:green";
+    }
+    localStorage.setItem('userData', JSON.stringify({ username, email, password }));
+    alert('Đăng kí thành công! Thông tin đăng ký đã được lưu trữ.');
+    closeAndReset();
+});
 function openLocationModal(ModalId){
     var modals = document.getElementsByClassName('modal-details');
     for (var i = 0; i < modals.length; i++) {
@@ -283,4 +280,27 @@ function changeMap(Num){
 Botsonic("init", {
     serviceBaseUrl: "https://api-azure.botsonic.ai",
     token: "4439388c-a189-4617-98be-f7ee68d8c453",
+});
+function dangNhap(tenDangNhap, matKhau) {
+    var userData = JSON.parse(localStorage.getItem('userData'));
+    if (userData !== null) {
+        if (userData.username === tenDangNhap && userData.password === matKhau) {
+            return true;
+        }
+    }
+    return false;
+}
+
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var tenDangNhap = document.getElementById('loginName').value;
+    var matKhau = document.getElementById('loginPassword').value;
+    var ketQuaDangNhap = dangNhap(tenDangNhap, matKhau);
+    if (ketQuaDangNhap) {
+        alert('Chào mừng bạn trở lại!');
+        document.getElementById('id01').style.display="none";
+        document.getElementById('loginForm').reset();
+    } else {
+        alert('Tên đăng nhập hoặc mật khẩu không đúng. Vui lòng thử lại.');
+    }
 });
